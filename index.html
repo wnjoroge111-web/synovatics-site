@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" type="image/png" href="synovatics-favicon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Synovatics · Automated receptionists for service businesses</title>
@@ -63,6 +62,24 @@
   .trades .list span{font-family:"Sora";font-weight:600;color:var(--muted);font-size:1.05rem;}
   .value .big-line{color:var(--text);font-family:"Sora";font-weight:700;font-size:clamp(1.4rem,3vw,1.9rem);max-width:26ch;margin-bottom:16px;letter-spacing:-0.02em;line-height:1.25;}
   .value p{color:var(--muted);max-width:58ch;font-size:1.08rem;}
+  .pricing{border-top:1px solid var(--panel-line);}
+  .pricing-grid{align-items:stretch;}
+  .price-card{display:flex;flex-direction:column;position:relative;}
+  .price-card.recommended{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset;}
+  .rec-tag{position:absolute;top:-12px;left:24px;background:var(--accent);color:#05122e;font-family:"Sora";font-weight:700;font-size:.72rem;letter-spacing:.02em;padding:4px 12px;border-radius:100px;}
+  .price-card h3{font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:14px;}
+  .price{display:flex;align-items:baseline;gap:6px;margin-bottom:8px;}
+  .price .amt{font-family:"Sora";font-weight:800;font-size:2.1rem;color:var(--text);}
+  .price .per{color:var(--muted-dim);font-size:.95rem;}
+  .price-card .minutes{color:var(--muted);font-size:.9rem;margin-bottom:22px;}
+  .feat-list{list-style:none;margin-bottom:28px;flex:1;}
+  .feat-list li{color:var(--muted);font-size:.92rem;padding:9px 0 9px 22px;position:relative;border-top:1px solid var(--panel-line);}
+  .feat-list li:first-child{border-top:none;}
+  .feat-list li::before{content:"";position:absolute;left:0;top:16px;width:8px;height:8px;border-radius:2px;background:var(--accent-soft);opacity:.7;}
+  .price-cta{text-align:center;width:100%;}
+  .price-note{color:var(--muted-dim);font-size:.9rem;margin-top:26px;}
+  .price-note a{color:var(--accent-soft);text-decoration:none;border-bottom:1px solid transparent;}
+  .price-note a:hover{border-color:var(--accent-soft);}
   .final{text-align:center;position:relative;overflow:hidden;}
   .final::before{content:"";position:absolute;bottom:-380px;left:50%;transform:translateX(-50%);width:1000px;height:640px;background:radial-gradient(ellipse at center,var(--glow1) 0%,rgba(8,13,22,0) 60%);opacity:.4;filter:blur(18px);z-index:0;}
   .final .wrap{position:relative;z-index:2;}
@@ -82,7 +99,8 @@
   footer .wrap{padding:28px 26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--muted-dim);font-size:.9rem;}
   footer a{color:var(--muted);text-decoration:none;}
   footer a:hover{color:var(--accent-soft);}
-  @media (max-width:680px){.grid{grid-template-columns:1fr;}.hero{padding:44px 0 64px;}.brand-tag{display:none;}.nav-right{gap:0;}}
+  .footer-links a{margin:0 2px;}
+  @media (max-width:680px){.grid{grid-template-columns:1fr;}.hero{padding:44px 0 64px;}.brand-tag{display:none;}.nav-right{gap:8px;}}
   @media (prefers-reduced-motion:no-preference){
     .hero .wrap>*{animation:rise .7s ease both;}
     .hero .pill{animation-delay:.02s;} .hero h1{animation-delay:.08s;}
@@ -96,6 +114,7 @@
     <div class="brand">Synov<b>a</b>tics</div>
     <div class="nav-right">
       <span class="brand-tag">Intelligent systems. Automated operations.</span>
+      <a class="nav-contact" href="#pricing">Pricing</a>
       <a class="nav-contact" href="#contact">Contact</a>
     </div>
   </div></nav>
@@ -137,6 +156,52 @@
     <p>Most service businesses miss a large share of their calls during busy stretches: everyone's on a job, or it's after hours. Each of those is a customer ready to book, handed to whoever picks up. An automated receptionist means there's always someone answering, even when there isn't.</p>
   </div></section>
 
+  <section class="pricing" id="pricing"><div class="wrap">
+    <p class="kicker">Pricing</p>
+    <h2>Straightforward, month to month.</h2>
+    <p class="lead-sm">Every plan includes a receptionist built and tuned for your business, with the details of every call sent straight to you. Start with a 7-day trial on your after-hours and overflow calls, no card required. No contract, cancel anytime.</p>
+    <div class="grid pricing-grid">
+      <div class="card price-card">
+        <h3>Starter</h3>
+        <div class="price"><span class="amt">$99</span><span class="per">/month</span></div>
+        <p class="minutes">200 minutes included &middot; $0.45/min after</p>
+        <ul class="feat-list">
+          <li>Tailored receptionist build</li>
+          <li>Instant lead notifications</li>
+          <li>No setup fee</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a class="btn btn-ghost price-cta" href="mailto:marie@synovatics.com?subject=Start%20my%20trial%20%E2%80%94%20Starter">Start your trial</a>
+      </div>
+      <div class="card price-card recommended">
+        <span class="rec-tag">Most requested</span>
+        <h3>Standard</h3>
+        <div class="price"><span class="amt">$199</span><span class="per">/month</span></div>
+        <p class="minutes">500 minutes included &middot; $0.40/min after</p>
+        <ul class="feat-list">
+          <li>Tailored receptionist build</li>
+          <li>Instant lead notifications</li>
+          <li>No setup fee</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a class="btn btn-primary price-cta" href="mailto:marie@synovatics.com?subject=Start%20my%20trial%20%E2%80%94%20Standard">Start your trial</a>
+      </div>
+      <div class="card price-card">
+        <h3>Growth</h3>
+        <div class="price"><span class="amt">$299</span><span class="per">/month</span></div>
+        <p class="minutes">1,000 minutes included &middot; $0.35/min after</p>
+        <ul class="feat-list">
+          <li>Tailored receptionist build</li>
+          <li>Instant lead notifications</li>
+          <li>No setup fee</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <a class="btn btn-ghost price-cta" href="mailto:marie@synovatics.com?subject=Start%20my%20trial%20%E2%80%94%20Growth">Start your trial</a>
+      </div>
+    </div>
+    <p class="price-note">Trial covers after-hours and overflow calls only, with no change to your current phone setup. See the <a href="refund.html">cancellation &amp; refund policy</a>.</p>
+  </div></section>
+
   <section class="final"><div class="wrap">
     <h2>See it work for your business.</h2>
     <p>Call the demo line to hear it in action. If you like it, we'll build one tailored to your company, with your name, your services and your hours, free to try, with no change to your current setup.</p>
@@ -163,7 +228,8 @@
   </div></section>
 
   <footer><div class="wrap">
-    <span>Synovatics · Automated receptionists for service businesses</span>
+    <span>Synovatics · Automated receptionists for service businesses · Operated from Nairobi, Kenya</span>
+    <span class="footer-links"><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="refund.html">Cancellation &amp; Refunds</a></span>
     <span>&copy; 2026 Synovatics</span>
   </div></footer>
 </body>
