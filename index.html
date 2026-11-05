@@ -62,8 +62,40 @@
   .trades p.eyeline{color:var(--muted-dim);font-size:.92rem;margin-bottom:18px;}
   .trades .list{display:flex;gap:14px 30px;justify-content:center;flex-wrap:wrap;}
   .trades .list span{font-family:"Sora";font-weight:600;color:var(--muted);font-size:1.05rem;}
-  .value .big-line{color:var(--text);font-family:"Sora";font-weight:700;font-size:clamp(1.4rem,3vw,1.9rem);max-width:26ch;margin-bottom:16px;letter-spacing:-0.02em;line-height:1.25;}
-  .value p{color:var(--muted);max-width:58ch;font-size:1.08rem;}
+  .value .big-line,.control .big-line{color:var(--text);font-family:"Sora";font-weight:700;font-size:clamp(1.4rem,3vw,1.9rem);max-width:26ch;margin-bottom:16px;letter-spacing:-0.02em;line-height:1.25;}
+  .value p,.control p{color:var(--muted);max-width:58ch;font-size:1.08rem;}
+  .notif{border-top:1px solid var(--panel-line);background:var(--bg-soft);}
+  .notif-card{background:linear-gradient(180deg,var(--panel) 0%,var(--bg-soft) 100%);border:1px solid var(--panel-line);border-radius:14px;max-width:460px;overflow:hidden;}
+  .notif-head{display:flex;align-items:center;gap:10px;padding:16px 22px;border-bottom:1px solid var(--panel-line);font-family:"Sora";font-weight:600;font-size:.95rem;}
+  .notif-dot{width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 8px #3ddc84;flex:none;}
+  .notif-badge{margin-left:auto;background:rgba(77,141,255,.12);color:var(--accent-soft);font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:100px;}
+  .notif-body{padding:18px 22px;}
+  .notif-row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--panel-line);font-size:.92rem;}
+  .notif-row:first-child{border-top:none;}
+  .notif-lbl{color:var(--muted-dim);}
+  .notif-val{color:var(--text);font-weight:600;text-align:right;}
+  .notif-urgent{color:#ff8a65;}
+  .notif-summary{padding-top:14px;margin-top:4px;border-top:1px solid var(--panel-line);}
+  .notif-summary .notif-lbl{display:block;margin-bottom:6px;}
+  .notif-summary p{color:var(--muted);font-size:.92rem;}
+  .notif-foot{padding:14px 22px;border-top:1px solid var(--panel-line);color:var(--muted-dim);font-size:.85rem;background:rgba(255,255,255,.015);}
+  .notif-example-note{color:var(--muted-dim);font-size:.85rem;margin-top:16px;font-style:italic;}
+  .plan-fit{color:var(--muted);font-size:.87rem;line-height:1.5;margin-bottom:18px;}
+  .trial-explainer{background:var(--panel);border:1px solid var(--panel-line);border-radius:14px;padding:28px 30px;margin-bottom:22px;}
+  .trial-explainer h3{font-family:"Sora";font-size:1.15rem;font-weight:700;margin-bottom:10px;}
+  .trial-explainer p{color:var(--muted);font-size:.98rem;margin-bottom:16px;}
+  .trial-list{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:8px 20px;}
+  .trial-list li{color:var(--muted);font-size:.92rem;padding-left:20px;position:relative;}
+  .trial-list li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:2px;background:var(--accent-soft);opacity:.7;}
+  .steps{border-top:1px solid var(--panel-line);}
+  .faq{border-top:1px solid var(--panel-line);background:var(--bg-soft);}
+  .faq-list{display:flex;flex-direction:column;gap:10px;max-width:720px;}
+  .faq-item{background:var(--panel);border:1px solid var(--panel-line);border-radius:10px;padding:18px 22px;}
+  .faq-item summary{cursor:pointer;font-family:"Sora";font-weight:600;font-size:1rem;color:var(--text);list-style:none;position:relative;padding-right:28px;}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:"+";position:absolute;right:0;top:-2px;font-size:1.3rem;color:var(--accent-soft);font-weight:400;transition:.15s;}
+  .faq-item[open] summary::after{content:"\2212";}
+  .faq-item p{color:var(--muted);font-size:.95rem;margin-top:12px;}
   .pricing{border-top:1px solid var(--panel-line);}
   .pricing-grid{align-items:stretch;}
   .price-card{display:flex;flex-direction:column;position:relative;}
@@ -102,7 +134,7 @@
   footer a{color:var(--muted);text-decoration:none;}
   footer a:hover{color:var(--accent-soft);}
   .footer-links a{margin:0 2px;}
-  @media (max-width:680px){.grid{grid-template-columns:1fr;}.hero{padding:44px 0 64px;}.brand-tag{display:none;}.nav-right{gap:8px;}}
+  @media (max-width:680px){.grid{grid-template-columns:1fr;}.hero{padding:44px 0 64px;}.brand-tag{display:none;}.nav-right{gap:8px;}.trial-list{grid-template-columns:1fr;}}
   @media (prefers-reduced-motion:no-preference){
     .hero .wrap>*{animation:rise .7s ease both;}
     .hero .pill{animation-delay:.02s;} .hero h1{animation-delay:.08s;}
@@ -144,12 +176,38 @@
   <section><div class="wrap">
     <p class="kicker">How it works</p>
     <h2>It picks up when you can't.</h2>
-    <p class="lead-sm">No new phone system, no app to learn, nothing to install. It sits behind your existing line and catches what would otherwise go to voicemail.</p>
+    <p class="lead-sm">No new phone system or hardware required. Keep your existing business number. We configure call forwarding so unanswered and after-hours calls reach your Synovatics receptionist.</p>
     <div class="grid">
       <div class="card"><div class="step">Step 1</div><h3>It answers</h3><p>A caller reaches your line while you're busy or closed. The receptionist picks up in your company's name. Warm, calm, professional.</p></div>
-      <div class="card"><div class="step">Step 2</div><h3>It sorts and captures</h3><p>It works out whether the call is urgent or routine, then takes the caller's name, number, location, and what they need.</p></div>
+      <div class="card"><div class="step">Step 2</div><h3>It sorts and captures</h3><p>It identifies urgent enquiries and routine requests, then captures the details needed for your follow-up.</p></div>
       <div class="card"><div class="step">Step 3</div><h3>It hands you the lead</h3><p>The details reach you right away, so you can call back and book the job instead of losing it to the next name on the list.</p></div>
     </div>
+  </div></section>
+
+  <section class="notif"><div class="wrap">
+    <p class="kicker">What you receive</p>
+    <h2>Here's what a captured lead looks like.</h2>
+    <p class="lead-sm">The moment a call ends, this is what lands with you, enough detail to call back and book the job.</p>
+    <div class="notif-card">
+      <div class="notif-head"><span class="notif-dot"></span><span>New customer enquiry</span><span class="notif-badge">Lead captured</span></div>
+      <div class="notif-body">
+        <div class="notif-row"><span class="notif-lbl">Caller</span><span class="notif-val">James Wilson</span></div>
+        <div class="notif-row"><span class="notif-lbl">Phone</span><span class="notif-val">+1 555 123 4567</span></div>
+        <div class="notif-row"><span class="notif-lbl">Service</span><span class="notif-val">AC repair</span></div>
+        <div class="notif-row"><span class="notif-lbl">Location</span><span class="notif-val">Dallas, Texas</span></div>
+        <div class="notif-row"><span class="notif-lbl">Urgency</span><span class="notif-val notif-urgent">High</span></div>
+        <div class="notif-row"><span class="notif-lbl">Preferred callback</span><span class="notif-val">Today</span></div>
+        <div class="notif-summary"><span class="notif-lbl">Call summary</span><p>Customer reports that the AC has stopped cooling. They would like someone to call them back as soon as possible.</p></div>
+      </div>
+      <p class="notif-foot">Sent to the business owner the moment the call ends.</p>
+    </div>
+    <p class="notif-example-note">Example notification shown for illustration, not a real customer enquiry.</p>
+  </div></section>
+
+  <section class="control"><div class="wrap">
+    <p class="kicker">What happens when it can't help</p>
+    <p class="big-line">You stay in control.</p>
+    <p>Your AI receptionist captures the caller's details and the reason for their call. If a caller needs human assistance or has an urgent request, the receptionist flags the enquiry and sends you a notification so you can follow up. It does not make promises on your behalf or invent answers when it does not know something.</p>
   </div></section>
 
   <section class="value"><div class="wrap">
@@ -167,6 +225,7 @@
         <h3>Starter</h3>
         <div class="price"><span class="amt">$99</span><span class="per">/month</span></div>
         <p class="minutes">200 minutes included &middot; $0.45/min after</p>
+        <p class="plan-fit">Ideal for smaller businesses handling occasional missed calls.</p>
         <ul class="feat-list">
           <li>Tailored receptionist build</li>
           <li>Instant lead notifications</li>
@@ -180,6 +239,7 @@
         <h3>Standard</h3>
         <div class="price"><span class="amt">$199</span><span class="per">/month</span></div>
         <p class="minutes">500 minutes included &middot; $0.40/min after</p>
+        <p class="plan-fit">Ideal for busy contractors receiving regular customer enquiries.</p>
         <ul class="feat-list">
           <li>Tailored receptionist build</li>
           <li>Instant lead notifications</li>
@@ -192,6 +252,7 @@
         <h3>Growth</h3>
         <div class="price"><span class="amt">$299</span><span class="per">/month</span></div>
         <p class="minutes">1,000 minutes included &middot; $0.35/min after</p>
+        <p class="plan-fit">Ideal for businesses handling a higher volume of incoming calls.</p>
         <ul class="feat-list">
           <li>Tailored receptionist build</li>
           <li>Instant lead notifications</li>
@@ -201,7 +262,62 @@
         <a class="btn btn-ghost price-cta" href="mailto:marie@synovatics.com?subject=Start%20my%20trial%20%E2%80%94%20Growth">Start your trial</a>
       </div>
     </div>
-    <p class="price-note">Trial covers after-hours and overflow calls only, with no change to your current phone setup. See the <a href="refund.html">cancellation &amp; refund policy</a>.</p>
+    <div class="trial-explainer">
+      <h3>Your 7-day trial, without the commitment.</h3>
+      <p>We configure your receptionist using your business name, services and operating hours. You test it on after-hours and overflow calls for seven days.</p>
+      <ul class="trial-list">
+        <li>No credit card required</li>
+        <li>No setup fee</li>
+        <li>No automatic subscription charge</li>
+        <li>You decide whether to continue with a paid plan</li>
+      </ul>
+    </div>
+    <p class="price-note">Minutes are rounded up to the nearest minute. Unused minutes don't roll over to the next month. Usage beyond your plan is billed automatically at the overage rate shown above, added to that month's charge. See the <a href="refund.html">cancellation &amp; refund policy</a>.</p>
+  </div></section>
+
+  <section class="steps"><div class="wrap">
+    <p class="kicker">Getting started</p>
+    <h2>Three steps, no heavy lifting on your end.</h2>
+    <div class="grid">
+      <div class="card"><div class="step">01</div><h3>Tell us about your business</h3><p>Share your business name, services, working hours and service areas.</p></div>
+      <div class="card"><div class="step">02</div><h3>We configure your receptionist</h3><p>We tailor the greeting, responses and call handling to your business.</p></div>
+      <div class="card"><div class="step">03</div><h3>Test it with real calls</h3><p>Forward your after-hours or overflow calls and see how it handles enquiries.</p></div>
+    </div>
+  </div></section>
+
+  <section class="faq"><div class="wrap">
+    <p class="kicker">Questions</p>
+    <h2>Before you get started.</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Does Synovatics replace my existing business phone number?</summary>
+        <p>No. You keep your existing business number. Call forwarding is configured to send unanswered or after-hours calls to your Synovatics receptionist.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do I need to buy new equipment?</summary>
+        <p>No. You do not need special hardware or a new phone system.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I choose when the AI answers calls?</summary>
+        <p>Yes. You can configure it to answer after-hours calls, missed calls, or overflow calls when your team is busy.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can the AI book appointments?</summary>
+        <p>Currently, the receptionist captures appointment requests and sends the details to you. Confirmed bookings and calendar integrations depend on the services configured for your business.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens if the AI cannot answer a question?</summary>
+        <p>It avoids guessing, captures the enquiry, and sends it to you for follow-up.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I cancel my subscription?</summary>
+        <p>Yes. All plans are month to month. You can cancel according to the <a href="refund.html">cancellation policy</a>.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is there a long-term contract?</summary>
+        <p>No. You pay monthly, with no long-term commitment.</p>
+      </details>
+    </div>
   </div></section>
 
   <section class="final"><div class="wrap">
